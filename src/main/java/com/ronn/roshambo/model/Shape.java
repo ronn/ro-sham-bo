@@ -10,6 +10,8 @@ import java.util.Random;
 
 public abstract class Shape {
 
+  public abstract String getName();
+
   public abstract Boolean beats(Shape shape);
 
   public static Shape getRandomShape() {
@@ -18,4 +20,15 @@ public abstract class Shape {
 
     return shapes.get(rand.nextInt(shapes.size()));
   }
+
+  //TODO This should be here
+  /*public Shape generateChosenShape() {
+    Shape shape = PlayingType.ALWAYS_ROCK.equals(playingType)
+        ? new Rock()
+        : Shape.getRandomShape();
+
+    this.setChosenShape(shape.getName());
+
+    return shape;
+  }*/
 }
