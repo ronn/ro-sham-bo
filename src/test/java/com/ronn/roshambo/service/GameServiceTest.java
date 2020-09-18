@@ -10,22 +10,18 @@ import static junit.framework.TestCase.assertTrue;
 class GameServiceTest {
 
   @Test
-  void playRound() {
+  void when_calling_playRound_new_round_is_added_to_current_game() {
     GameService gameService = new GameService();
-    Player player1 = new Player(PlayingType.RANDOM);
-    Player player2 = new Player(PlayingType.RANDOM);
 
-    Round round = new Round(player1, player2);
-
-    Game game = gameService.playRound(round);
+    Game game = gameService.playRound();
     assertEquals(1, game.getRounds().size());
 
-    gameService.playRound(round);
+    gameService.playRound();
     assertEquals(2, game.getRounds().size());
   }
 
   @Test
-  void defineResult() {
+  void when_same_shape_is_chosen_then_result_is_draw() {
     GameService gameService = new GameService();
 
     RoundResult roundResult = gameService.defineResult(new Player(PlayingType.ALWAYS_ROCK), new Player(PlayingType.ALWAYS_ROCK));
