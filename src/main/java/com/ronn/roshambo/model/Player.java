@@ -1,16 +1,13 @@
 package com.ronn.roshambo.model;
 
-import com.ronn.roshambo.model.shape.Rock;
-
 public class Player {
 
-  private final PlayingType playingType;
-  private String chosenShape;
+  private final String chosenShape;
 
-  public Player(PlayingType playingType) {
-    this.playingType = playingType;
+  public Player(String chosenShape) {
+    this.chosenShape = chosenShape;
   }
-
+/*
   public Shape generateChosenShape() {
     Shape shape = PlayingType.ALWAYS_ROCK.equals(playingType)
         ? new Rock()
@@ -19,13 +16,9 @@ public class Player {
     this.setChosenShape(shape.getName());
 
     return shape;
-  }
+  }*/
 
   public String getChosenShape() {
     return this.chosenShape;
-  }
-
-  private void setChosenShape(String chosenShape) {
-    this.chosenShape = chosenShape;
   }
 }

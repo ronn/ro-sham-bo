@@ -16,19 +16,8 @@ public abstract class Shape {
 
   public static Shape getRandomShape() {
     List<Shape> shapes = Arrays.asList(new Rock(), new Paper(), new Scissors());
-    Random rand = new Random();
+    Random random = new Random();
 
-    return shapes.get(rand.nextInt(shapes.size()));
+    return shapes.get(random.nextInt(shapes.size()));
   }
-
-  //TODO This should be here
-  /*public Shape generateChosenShape() {
-    Shape shape = PlayingType.ALWAYS_ROCK.equals(playingType)
-        ? new Rock()
-        : Shape.getRandomShape();
-
-    this.setChosenShape(shape.getName());
-
-    return shape;
-  }*/
 }
