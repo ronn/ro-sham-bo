@@ -31,29 +31,28 @@ public class GameService {
 
     Round round = new Round(player1, player2, roundResult);
 
-    resultRepository.save(new ResultDTO(roundResult.name()));
+    ResultDTO save = resultRepository.save(new ResultDTO(roundResult.name()));
     game.addRound(round);
 
     return game;
   }
 
   public GameRecord getResults(){
-
     List<ResultDTO> all = resultRepository.findAll();
 
-    long draws = all.stream()
-        .filter(r -> DRAW.name().equals(r.getResult()))
-        .count();
+    long draws = filterResult(all, DRAW);
 
-    long p1Wins = all.stream()
-        .filter(r -> PLAYER_1.name().equals(r.getResult()))
-        .count();
+    long p1Wins = filterResult(all, PLAYER_1);
 
-    long p2Wins = all.stream()
-        .filter(r -> PLAYER_2.name().equals(r.getResult()))
-        .count();
+    long p2Wins = filterResult(all, PLAYER_2);
 
     return new GameRecord(all.size(), p1Wins, p2Wins, draws);
+  }
+
+  private long filterResult(List<ResultDTO> all, RoundResult desiredResult) {
+    return all.stream()
+        .filter(r -> desiredResult.name().equals(r.getResult()))
+        .count();
   }
 
   public RoundResult defineResult(Shape chosenShape1, Shape chosenShape2) {
@@ -67,8 +66,7 @@ public class GameService {
   }
 
   public Game restartGame() {
-    game.getRounds().clear();
-    System.gc();
-    return null;
+    game = new Game();
+    return game;
   }
 }
